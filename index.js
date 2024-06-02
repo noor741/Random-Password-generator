@@ -5,21 +5,27 @@ function passwordGenerate(){
     const numberChars = "0123456789";
     const symbolChars = "!@#$^&=_-";
 
-    let usableChars = [];
+    let usableChars = "";
     let password = "";
 
     usableChars += isLower.checked ? lowerChars : "";
     usableChars += isUpper.checked ? upperChars : "";
     usableChars += isNumber.checked ? numberChars : "";
     usableChars += isSymbols.checked ? symbolChars : "";
+
     
 
     for(let i = 0; i < lengthval.value ; i++){
         let randomValue = Math.floor(Math.random() * usableChars.length);
         password += usableChars[randomValue];
     }
-    resultP.textContent = "Password: " + password;
 
+    if(usableChars.length === 0){
+        resultP.textContent = "At least one set of characters should be selected."
+    }
+    else{
+    resultP.textContent = "Password: " + password;
+    }
 }
 
 let lengthval = document.getElementById("textbox");
